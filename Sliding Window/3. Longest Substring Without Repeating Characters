@@ -1,0 +1,100 @@
+/*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🗓️ Pattern: Sliding Window (Variable Size)
+🔢 Problem: 3. Longest Substring Without Repeating Characters
+📅 Date: January 8, 2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 Problem: 3. Longest Substring Without Repeating Characters
+📌 Link: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+🏷️ Difficulty: Medium
+🏆 Topics: Hash Table, String, Sliding Window
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📖 Problem Summary
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Given:
+- A string `s`.
+
+Goal:
+- Find the length of the longest substring without repeating characters.
+
+Key Insight:
+- This is a classic **Variable Size Sliding Window** problem. 
+- We expand the window by moving the `right` pointer. If we encounter a character that is already inside the current window, the window is no longer "valid."
+- Instead of shrinking the `left` pointer step-by-step, we can **jump** the `left` pointer to the position immediately after the last seen occurrence of the repeating character to maintain efficiency.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 Approach (Optimized Sliding Window)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. **Map Last Occurrences**: Use a vector or hash map `last` to store the last index where each character was seen.
+2. **Window Boundaries**:
+   - `i` (left pointer): Represents the start of the current substring.
+   - `j` (right pointer): Represents the end of the current substring.
+3. **The "Jump" Logic**:
+   - As we move `j`, check if `s[j]` was seen before **within the current window** (`last[s[j]] >= i`).
+   - If yes, move `i` directly to `last[s[j]] + 1`. This effectively discards the repeat and everything before it.
+4. **Update**: Update the character's last seen position and calculate the current window length: `j - i + 1`.
+
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+*/
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int n = s.length();
+        int maxLen = 0;
+        
+        // Stores the last seen index of each ASCII character
+        // Initialized to -1
+        vector<int> last(256, -1);
+        
+        int i = 0, j = 0;
+        while (j < n) {
+            // If the character at j has been seen before AND 
+            // it is inside our current window [i...j]
+            if (last[s[j]] >= i) {
+                // Shrink/Jump the window start to just after the previous occurrence
+                i = last[s[j]] + 1;
+            }
+            
+            // Record/Update the last seen position of the current character
+            last[s[j]] = j;
+            
+            // Calculate window size and update global maximum
+            maxLen = max(maxLen, j - i + 1);
+            
+            // Expand the window
+            j++;
+        }
+        
+        return maxLen;
+    }
+};
+
+/*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚡ Complexity Analysis
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⏰ Time Complexity: O(N)
+   └─ We traverse the string once with the right pointer `j`. The left pointer `i` only moves forward.
+   
+💾 Space Complexity: O(K)
+   └─ K is the size of the character set (256 for extended ASCII). Since this is constant, it's effectively O(1).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔍 Example Walkthrough (s = "abcabcbb")
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. j=0, s[j]='a': last['a']=0, maxLen=1, window="a"
+2. j=1, s[j]='b': last['b']=1, maxLen=2, window="ab"
+3. j=2, s[j]='c': last['c']=2, maxLen=3, window="abc"
+4. j=3, s[j]='a': last['a'](0) >= i(0). Jump i = 0+1 = 1. last['a']=3, maxLen=3, window="bca"
+5. j=4, s[j]='b': last['b'](1) >= i(1). Jump i = 1+1 = 2. last['b']=4, maxLen=3, window="cab"
+Result: 3.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+*/
