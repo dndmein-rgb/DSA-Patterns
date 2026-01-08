@@ -1,0 +1,102 @@
+/*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🗓️ Pattern: Sliding Window (Variable Size + Frequency Tracking)
+🔢 Problem: 424. Longest Repeating Character Replacement
+📅 Date: January 8, 2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 Problem: 424. Longest Repeating Character Replacement
+📌 Link: https://leetcode.com/problems/longest-repeating-character-replacement/
+🏷️ Difficulty: Medium
+🏆 Topics: Hash Table, String, Sliding Window
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📖 Problem Summary
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Given:
+- A string `s` and an integer `k`.
+- You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most `k` times.
+
+Goal:
+- Return the length of the longest substring containing the same letter you can get after performing the above operations.
+
+Key Insight:
+- A valid window is one where: `(Window Length - Frequency of Most Frequent Character) <= k`.
+- This represents the number of "other" characters in the window that need to be replaced. If this count is $\le k$, the window is valid.
+- We use a sliding window to find the maximum such window length.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 Approach (Sliding Window with Max Frequency)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. **Frequency Tracking**: Use a hash map or an array (size 26) to track the count of characters in the current window.
+2. **Track Max Frequency**: Keep track of `maxFreq`, the highest frequency of any single character currently in the window.
+3. **Window Validation**:
+   - Current Window Length: `j - i + 1`.
+   - Characters to replace: `(j - i + 1) - maxFreq`.
+   - If `replacements > k`, the window is invalid. Shrink it by moving the left pointer `i` and decrementing the frequency of `s[i]`.
+4. **Update Result**: The maximum `j - i + 1` seen during the valid states is our answer.
+
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+*/
+
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int n = s.length();
+        int maxLen = 0;
+        int maxFreq = 0;
+        unordered_map<char, int> freq;
+        
+        int i = 0, j = 0;
+        while (j < n) {
+            // Expand the window by adding character at index j
+            freq[s[j]]++;
+            
+            // Update the frequency of the most frequent character in the current window
+            maxFreq = max(maxFreq, freq[s[j]]);
+            
+            // Check if the current window is valid
+            // Valid if: (total characters - most frequent character) <= k
+            while ((j - i + 1) - maxFreq > k) {
+                // Window is invalid, shrink from the left
+                freq[s[i]]--;
+                i++;
+                // Note: We don't strictly need to decrease maxFreq here because 
+                // we only care about maxFreq increasing to find a new maxLen.
+            }
+            
+            // Record the maximum valid window length found
+            maxLen = max(maxLen, j - i + 1);
+            j++;
+        }
+
+        return maxLen;
+    }
+};
+
+/*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚡ Complexity Analysis
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⏰ Time Complexity: O(N)
+   └─ Each character is visited at most twice (once by `j` and once by `i`).
+   
+💾 Space Complexity: O(26) ≈ O(1)
+   └─ The map stores at most 26 uppercase English letters.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔍 Example Walkthrough (s = "AABABBA", k = 1)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Window [0,2] "AAB": len=3, maxFreq=2. Replacements = 3-2 = 1. Valid. maxLen=3.
+2. Window [0,3] "AABA": len=4, maxFreq=3. Replacements = 4-3 = 1. Valid. maxLen=4.
+3. Window [0,4] "AABAB": len=5, maxFreq=3. Replacements = 5-3 = 2. Invalid (2 > 1).
+4. Shrink left: i=1. Window [1,4] "ABAB": len=4, maxFreq=2. Replacements = 4-2 = 2. Invalid.
+5. Shrink left: i=2. Window [2,4] "BAB": len=3, maxFreq=2. Replacements = 3-2 = 1. Valid.
+Result: 4.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+*/
