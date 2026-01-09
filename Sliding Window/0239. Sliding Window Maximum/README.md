@@ -5,7 +5,7 @@
 **Problem Number**: 239  
 **Difficulty**: Hard  
 **LeetCode Link**: [Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)  
-**Topics**: Array, Queue, Sliding Window, Heap (Priority Queue), Monotonic Queue  
+**Topics**: Array, Queue, Sliding Window, Heap (Priority Queue), Monotonic Deque  
 
 ---
 
@@ -21,16 +21,7 @@ Return the max sliding window.
 
 #### Example 1
 **Input**: `nums = [1,3,-1,-3,5,3,6,7], k = 3`  
-**Output**: `[3,3,5,5,6,7]`  
-**Explanation**: 
-Window position                Max
----------------               -----
-[1  3  -1] -3  5  3  6  7       3
- 1 [3  -1  -3] 5  3  6  7       3
- 1  3 [-1  -3  5] 3  6  7       5
- 1  3  -1 [-3  5  3] 6  7       5
- 1  3  -1  -3 [5  3  6] 7       6
- 1  3  -1  -3  5 [3  6  7]      7
+**Output**: `[3,3,5,5,6,7]`
 
 #### Example 2
 **Input**: `nums = [1], k = 1`  
@@ -38,41 +29,35 @@ Window position                Max
 
 ---
 
-### Constraints
+## 💡 Approaches
 
-- `1 <= nums.length <= 10^5`
-- `-10^4 <= nums[i] <= 10^4`
-- `1 <= k <= nums.length`
+### 1. Priority Queue (Max-Heap) — O(N log N)
+We use a max-heap to keep track of the largest element. Since the heap doesn't support efficient removal of elements that aren't at the top, we use **Lazy Deletion**:
+- Store pairs of `{value, index}` in the heap.
+- Check the top of the heap; if its index is outside the current window range `(i - k)`, pop it.
+- The top element is now guaranteed to be the maximum of the current valid window.
 
----
-
-## 💡 Approach
-
-### Key Insight
-
-To efficiently find the maximum in a sliding window, we need a way to track both the value and the index of elements. Using a **Priority Queue (Max-Heap)** allows us to always access the largest element at the top. However, since the window slides, the current maximum in the heap might actually be outside the window boundaries. We solve this by "lazily" removing elements from the top of the heap only when their index is no longer within the range `[i - k + 1, i]`.
+### 2. Monotonic Deque — O(N) [Optimal]
+We use a `deque` to maintain indices of elements in **strictly decreasing order**. This allows us to find the maximum in $O(1)$ time.
 
 
 
-### Algorithm
-
-1. **Initialize**: Use a max-priority queue to store pairs of `{value, index}`.
-2. **Iterate**: Loop through the array from `i = 0` to `n - 1`.
-   - Push the current element `{nums[i], i}` into the priority queue.
-   - **Lazy Deletion**: While the index of the element at the top of the heap is outside the current window (`top.second <= i - k`), pop the top element.
-   - **Capture Maximum**: Once the loop index `i` reaches at least `k - 1`, the top of the heap is guaranteed to be the maximum for the current window. Append it to the result.
+**The Logic:**
+- **Remove Outdated**: If the index at the front of the deque is out of the window range, pop it.
+- **Maintain Monotonicity**: Before adding a new element, remove all elements from the back of the deque that are smaller than the new element (as they can never be the maximum again).
+- **Result**: The current maximum is always at `nums[dq.front()]`.
 
 ---
 
-## ⚡ Complexity Analysis
+## ⚡ Complexity Comparison
 
-### Time Complexity: **O(N log N)**
-- In the worst case, we push every element into the priority queue. Each push/pop operation takes $O(\log N)$ time.
-
-### Space Complexity: **O(N)**
-- The priority queue can store up to $N$ elements in the worst case (e.g., an array sorted in ascending order).
+| Feature | Priority Queue | Monotonic Deque |
+|---------|----------------|-----------------|
+| **Time Complexity** | $O(N \log N)$ | $O(N)$ |
+| **Space Complexity** | $O(N)$ | $O(K)$ |
+| **Efficiency** | Slower (Heap overhead) | Optimal (Linear scan) |
 
 ---
 
-**Pattern**: Sliding Window (Fixed Size) / Heap  
+**Pattern**: Sliding Window (Fixed Size) / Monotonic Queue  
 **Date Solved**: January 8, 2026
