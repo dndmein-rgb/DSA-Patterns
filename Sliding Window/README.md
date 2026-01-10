@@ -7,7 +7,7 @@ This roadmap represents the mechanical and mental shift required to master Slidi
 ## 🧱 Level 1: Absolute Basics (Move pointers without tripping)
 
 **The Focus**: Mechanical accuracy. Learning "Sum In, Sum Out."
-
+* [121. Best Time to Buy and Sell Stock](./0121-Best%20Time%20to%20Buy%20and%20Sell%20Stock) - Classic one-pass window tracking.
 * [643. Maximum Average Subarray I](./0643.%20Maximum%20Average%20Subarray%20I) - Fixed window, sum in and sum out. No excuses.
 * [209. Minimum Size Subarray Sum](./0209.%20Minimum%20Size%20Subarray%20Sum) - Variable window, positive numbers only. Sliding window 101.
 * [1343. Number of Sub-arrays of Size K and Average ≥ Threshold](./1343.%20Number%20of%20Sub-arrays%20of%20Size%20K%20and%20Average%20Greater%20than%20or%20Equal%20to%20Threshold) - Fixed window, mechanical.
@@ -58,7 +58,7 @@ This roadmap represents the mechanical and mental shift required to master Slidi
 
 **The Focus**: Rare, but brutal if you haven't done Level 5.
 
-* [121. Best Time to Buy and Sell Stock](./0121-Best%20Time%20to%20Buy%20and%20Sell%20Stock) - Classic one-pass window tracking.
+
 * [1658. Minimum Operations to Reduce X to Zero](#) - Inverted thinking: find maximum middle subarray. *(Add when available)*
 * [2444. Count Subarrays With Fixed Bounds](#) - Complex constraint tracking. *(Add when available)*
 
