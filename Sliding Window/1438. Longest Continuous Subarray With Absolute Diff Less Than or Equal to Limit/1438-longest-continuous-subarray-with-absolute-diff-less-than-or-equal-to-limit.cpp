@@ -36,18 +36,26 @@ public:
 class Solution {
 public:
     int longestSubarray(vector<int>& nums, int limit) {
-        priority_queue<pair<int,int>> maxH; 
-        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> minH;
-        int i = 0, ans = 0;
+        priority_queue<pair<int,int>> maxHeap; // (value, index)
+        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> minHeap;
+
+        int i = 0;
+        int ans = 0;
+
         for (int j = 0; j < nums.size(); j++) {
-            maxH.push({nums[j], j});
-            minH.push({nums[j], j});
-            while (true) {
-                while (!maxH.empty() && maxH.top().second < i) maxH.pop();
-                while (!minH.empty() && minH.top().second < i) minH.pop();
-                if (maxH.top().first - minH.top().first <= limit) break;
-                i++; 
+            maxHeap.push({nums[j], j});
+            minHeap.push({nums[j], j});
+
+            while (maxHeap.top().first - minHeap.top().first > limit) {
+                i++;
+
+                // Remove elements out of window
+                while (maxHeap.top().second < i)
+                    maxHeap.pop();
+                while (minHeap.top().second < i)
+                    minHeap.pop();
             }
+
             ans = max(ans, j - i + 1);
         }
         return ans;
