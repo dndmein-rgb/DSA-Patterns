@@ -30,20 +30,20 @@ This roadmap represents the mechanical and mental shift required to master Slidi
 ### 🧠 Level 4: Monotonic window (Separate skill)
 **The Focus**: Tracking Max/Min without $O(K)$ lookups.
 * [239. Sliding Window Maximum](./0239.%20Sliding%20Window%20Maximum/solution.cpp)
-* [1438. Longest Continuous Subarray With Absolute Diff ≤ Limit](#) - *Coming Soon*
+* [1438. Longest Continuous Subarray With Absolute Diff ≤ Limit](./1438-longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit.cpp/solution.cpp)
 
 
 
 ### 🧪 Level 5: Non-obvious sliding window (Where people fake it)
 **The Focus**: The "At Most K" Trick.
 * **Core Logic**: `Exactly(K) = AtMost(K) - AtMost(K - 1)`
-* [992. Subarrays with K Different Integers](#) - *Coming Soon*
-* [1248. Count Number of Nice Subarrays](#) - *Coming Soon*
-* [930. Binary Subarrays With Sum](#) - *Coming Soon*
+* [992. Subarrays with K Different Integers](#)
+* [1248. Count Number of Nice Subarrays](#)
+* [930. Binary Subarrays With Sum](#)
 
 ### 💀 Level 6: Window + Greed / Multi-Condition
 **The Focus**: Usually involves calculating "Exactly K" by transforming the logic or combining with greedy heuristics.
-* [121. Best Time to Buy and Sell Stock](./0121-Best%20Time%20to%20Buy%20and%20Sell%20Stock/solution.cpp) - (A variation of a 1-pass window)
+* [121. Best Time to Buy and Sell Stock](./0121-Best%20Time%20to%20Buy%20and%20Sell%20Stock/solution.cpp)
 
 ---
 
