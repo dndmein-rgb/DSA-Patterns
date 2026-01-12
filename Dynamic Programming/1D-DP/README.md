@@ -8,10 +8,13 @@ This roadmap represents the conceptual shift required to master Dynamic Programm
 **The Focus**: Recognize that `dp[i]` depends on previous states. 
 *Space Optimization:* If you only need the last 2 states, you can reduce space from $O(N)$ to $O(1)$.
 
+
+
 * [0070. Climbing Stairs](./0070.%20Climbing%20Stairs) - If you can't do this, start here.
 * [0746. Min Cost Climbing Stairs](./0746.%20Min%20Cost%20Climbing%20Stairs) - Same structure, slightly harder decision.
 * [0198. House Robber](./0198.%20House%20Robber) - Non-adjacent selection. Classic DP intro.
 * [0213. House Robber II](./0213.%20House%20Robber%20II) - Circular array. Learn to break into subproblems.
+* [0091. Decode Ways](./0091.%20Decode%20Ways) - Decision tree disguised as DP. Watch for edge cases.
 
 ---
 
@@ -20,8 +23,9 @@ This roadmap represents the conceptual shift required to master Dynamic Programm
 
 * [0300. Longest Increasing Subsequence](./0300.%20Longest%20Increasing%20Subsequence) - $O(N^2)$ first, then $O(N \log N)$.
 * [0139. Word Break](./0139.%20Word%20Break) - Dictionary lookup DP. String decision problem.
-* [0091. Decode Ways](./0091.%20Decode%20Ways) - Decision tree disguised as DP. Watch for edge cases.
 * [0152. Maximum Product Subarray](./0152.%20Maximum%20Product%20Subarray) - Track both max and min (negatives flip signs).
+* [0322. Coin Change](./0322.%20Coin%20Change) - Unbounded knapsack logic. Minimize items.
+* [0416. Partition Equal Subset Sum](./0416.%20Partition%20Equal%20Subset%20Sum) - 0/1 Knapsack in disguise.
 
 ---
 
@@ -44,16 +48,6 @@ This roadmap represents the conceptual shift required to master Dynamic Programm
 * [0072. Edit Distance](./0072.%20Edit%20Distance) - The boss fight. Insert, delete, replace decisions.
 * [0010. Regular Expression Matching](./0010.%20Regular%20Expression%20Matching) - Pattern matching with `*` and `.`.
 * [0044. Wildcard Matching](./0044.%20Wildcard%20Matching) - Similar to regex, different rules.
-
----
-
-## 💰 Level 5: Knapsack Variants (Infinite Forms)
-**The Focus**: Limited capacity, maximize value. Bounded vs. Unbounded.
-
-* [0416. Partition Equal Subset Sum](./0416.%20Partition%20Equal%20Subset%20Sum) - 0/1 Knapsack in disguise.
-* [0322. Coin Change](./0322.%20Coin%20Change) - Unbounded knapsack. Minimize coins used.
-* [0518. Coin Change II](./0518.%20Coin%20Change%20II) - Count ways, not minimize.
-* [0474. Ones and Zeroes](./0474.%20Ones%20and%20Zeroes) - 2D knapsack constraint.
 
 ---
 
