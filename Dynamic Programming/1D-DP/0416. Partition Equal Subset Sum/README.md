@@ -13,6 +13,20 @@ Given an integer array `nums`, return `true` if you can partition the array into
 
 ---
 
+### 📝 Examples
+
+**Example 1:**
+* **Input**: `nums = [1, 5, 11, 5]`
+* **Output**: `true`
+* **Explanation**: The array can be partitioned as `[1, 5, 5]` and `[11]`.
+
+**Example 2:**
+* **Input**: `nums = [1, 2, 3, 5]`
+* **Output**: `false`
+* **Explanation**: The total sum is 11, which is odd; it cannot be partitioned into two equal integer subsets.
+
+---
+
 ## 💡 Approach: Top-Down DP (Subset Sum)
 
 This problem is a direct application of the **Subset Sum Problem**. If we can find a subset that sums up to exactly half of the total sum, the remaining elements will naturally sum up to the other half.
