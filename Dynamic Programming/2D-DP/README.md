@@ -22,16 +22,10 @@ Navigate through a 2D grid with various constraints.
 
 **Pattern**: `dp[i][j] = f(dp[i-1][j], dp[i][j-1])`
 
-* **[0062. Unique Paths](./0062-Unique-Paths)**  
+* **[0062. Unique Paths](./0062.%20Unique%20Paths)**  
   *The classic.* Count all paths from top-left to bottom-right.
-  
-* **[0063. Unique Paths II](./0063-Unique-Paths-II)**  
-  *With obstacles.* Handle blocked cells in the grid.
-  
-* **[0064. Minimum Path Sum](./0064-Minimum-Path-Sum)**  
-  *Cost optimization.* Find the path with minimum sum.
 
-* **[0329. Longest Increasing Path in a Matrix](./0329-Longest-Increasing-Path-in-a-Matrix)**  
+* **[0329. Longest Increasing Path in a Matrix](./0329.%20Longest%20Increasing%20Path%20in%20a%20Matrix)**  
   *DFS + Memoization.* Find longest increasing path in any direction.
 
 ---
@@ -41,22 +35,19 @@ Compare, match, or transform two strings. The most interview-common 2D DP patter
 
 **Pattern**: `dp[i][j]` represents the solution for `s1[0...i]` and `s2[0...j]`
 
-* **[1143. Longest Common Subsequence](./1143-Longest-Common-Subsequence)**  
+* **[1143. Longest Common Subsequence](./1143.%20Longest%20Common%20Subsequence)**  
   *Foundation problem.* Find longest subsequence common to both strings.
   
-* **[0072. Edit Distance](./0072-Edit-Distance)**  
+* **[0072. Edit Distance](./0072.%20Edit%20Distance)**  
   *Levenshtein distance.* Minimum operations to convert one string to another.
   
-* **[0010. Regular Expression Matching](./0010-Regular-Expression-Matching)**  
+* **[0010. Regular Expression Matching](./0010.%20Regular%20Expression%20Matching)**  
   *Pattern matching.* Support `.` (any char) and `*` (zero or more).
   
-* **[0044. Wildcard Matching](./0044-Wildcard-Matching)**  
-  *Similar to regex.* Support `?` (one char) and `*` (any sequence).
-  
-* **[0097. Interleaving String](./0097-Interleaving-String)**  
+* **[0097. Interleaving String](./0097.%20Interleaving%20String)**  
   *Merge validation.* Check if s3 is formed by interleaving s1 and s2.
   
-* **[0115. Distinct Subsequences](./0115-Distinct-Subsequences)**  
+* **[0115. Distinct Subsequences](./0115.%20Distinct%20Subsequences)**  
   *Count occurrences.* Number of distinct subsequences of s matching t.
 
 ---
@@ -66,10 +57,10 @@ Decision making with items and constraints.
 
 **Pattern**: Include/exclude current item, track remaining capacity
 
-* **[0494. Target Sum](./0494-Target-Sum)**  
+* **[0494. Target Sum](./0494.%20Target%20Sum)**  
   *Assign +/- signs.* Subset sum with positive/negative choices.
   
-* **[0518. Coin Change II](./0518-Coin-Change-II)**  
+* **[0518. Coin Change II](./0518.%20Coin%20Change%20II)**  
   *Unbounded knapsack.* Count combinations to make amount with infinite coins.
 
 ---
@@ -79,7 +70,7 @@ Decision making with items and constraints.
 
 **Pattern**: Consider all ways to split the interval
 
-* **[0312. Burst Balloons](./0312-Burst-Balloons)**  
+* **[0312. Burst Balloons](./0312.%20Burst%20Balloons)**  
   *Think backwards.* Maximize coins by bursting balloons optimally.
 
 ---
@@ -87,7 +78,7 @@ Decision making with items and constraints.
 ### 🔄 State Machine DP
 Track not just position but also the **state** you're in (buy/sell/cooldown).
 
-* **[0309. Best Time to Buy and Sell Stock with Cooldown](./0309-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown)**  
+* **[0309. Best Time to Buy and Sell Stock with Cooldown](./0309.%20Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown)**  
   *Multiple states.* Track held/sold/cooldown states across days.
 
 ---
@@ -237,3 +228,9 @@ Feel free to add more problems or improve explanations! Follow the naming conven
 ---
 
 **Happy Coding!** 🚀 Master these patterns and 2D DP will become second nature.
+
+---
+
+## 📁 Folder Structure
+
+All problems follow the naming convention: `0XXX. Problem Name/` with spaces and proper capitalization as shown in the repository structure.
