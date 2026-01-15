@@ -17,6 +17,14 @@ Return the number of different expressions that you can build, which evaluates t
 
 ---
 
+### 🛑 Constraints
+* `1 <= nums.length <= 20`
+* `0 <= nums[i] <= 1000`
+* `0 <= sum(nums[i]) <= 1000`
+* `-1000 <= target <= 1000`
+
+---
+
 ### 📝 Examples
 
 **Example 1:**
@@ -42,15 +50,16 @@ For each number, we branch into two possibilities. This creates a recursion tree
 
 ### 2. Handling Negative Indices (The Offset Trick)
 A crucial part of the implementation is `curr + 1000`. 
-* Since the sum of elements in `nums` can be up to 1000, the `curr` sum can range from **-1000** (all negative) to **1000** (all positive).
-* Array indices cannot be negative, so we add an **offset of 1000** to shift the range from `[-1000, 1000]` to `[0, 2000]`.
+* **The Logic**: Since the maximum possible sum of `nums` is 1000 (per constraints), the range of our `curr` sum is `[-1000, 1000]`.
+* **The Problem**: Array indices in C++ must be $\ge 0$. 
+* **The Solution**: We add an **offset of 1000** to the current sum. This maps the range `[-1000, 1000]` to `[0, 2000]`, fitting perfectly into our `t[21][2001]` memoization table.
 
 
 
 ---
 
 ## ⚡ Complexity Analysis
-* **Time Complexity**: $O(N \times \text{TotalSum})$ — We explore $N \times 2001$ states.
+* **Time Complexity**: $O(N \times \text{TotalSum})$ — Since $N \le 20$ and $TotalSum \le 1000$, we explore approximately $20 \times 2001$ states.
 * **Space Complexity**: $O(N \times \text{TotalSum})$ — For the memoization table.
 
 ---
