@@ -16,6 +16,12 @@ Find the maximum profit you can achieve by buying and selling stocks with the fo
 
 ---
 
+### 🛑 Constraints
+* `1 <= prices.length <= 5000`
+* `0 <= prices[i] <= 1000`
+
+---
+
 ### 📝 Examples
 
 **Example 1:**
@@ -31,31 +37,31 @@ Find the maximum profit you can achieve by buying and selling stocks with the fo
 
 ## 💡 Approach: State Machine DP
 
-This problem is more complex than basic stock problems because the "Cooldown" requirement creates a dependency on the day after selling.
+This problem is more complex than basic stock problems because the "Cooldown" requirement creates a dependency on the day after selling. We can model this as a state machine.
+
+
 
 ### 1. The Decision Tree
-On any given day, your available actions depend on your current state:
+On any given day, your available actions depend on your current state (whether you currently hold a stock or not):
 
-
-
-* **State: Can Buy**
+* **State: Can Buy (Holding = False)**
     * **Buy**: Profit decreases by `prices[i]`. Next state is **Can Sell** on day `i+1`.
     * **Wait**: Profit unchanged. Next state remains **Can Buy** on day `i+1`.
 
-* **State: Can Sell**
+* **State: Can Sell (Holding = True)**
     * **Sell**: Profit increases by `prices[i]`. Next state is **Can Buy** on day `i+2` (skipping one day for cooldown).
     * **Wait**: Profit unchanged. Next state remains **Can Sell** on day `i+1`.
+
+
 
 ### 2. Why `i + 2`?
 The core "complex work" in this logic is the jump to `i + 2`. When you sell at index `i`, you are prohibited from buying at `i + 1`. Therefore, the earliest you can enter the "Can Buy" state again is index `i + 2`.
 
-
-
 ---
 
 ## ⚡ Complexity Analysis
-* **Time Complexity**: $O(N)$ — Each day has two states (Buy/Sell), resulting in $2N$ subproblems.
-* **Space Complexity**: $O(N)$ — Used for the memoization table and the recursion stack.
+* **Time Complexity**: $O(N)$ — Each day has two states (Buy/Sell), resulting in $2N$ total subproblems.
+* **Space Complexity**: $O(N)$ — Used for the memoization table `t[5001][2]` and the recursion stack.
 
 ---
 **Date Solved**: January 13, 2026
