@@ -13,6 +13,21 @@ Given an `m x n` integers `matrix`, return the length of the **longest increasin
 
 ---
 
+### 📝 Examples
+
+**Example 1:**
+
+* **Input**: `matrix = [[9,9,4],[6,6,8],[2,1,1]]`
+* **Output**: `4`
+* **Explanation**: The longest increasing path is `[1, 2, 6, 9]`.
+
+**Example 2:**
+* **Input**: `matrix = [[3,4,5],[3,2,6],[2,2,1]]`
+* **Output**: `4`
+* **Explanation**: The longest increasing path is `[3, 4, 5, 6]`. Moving diagonally is not allowed.
+
+---
+
 ## 💡 Approach: DFS + Memoization
 
 This problem is solved using Depth First Search with Memoization. Since we only move to strictly increasing values, the graph is a **DAG (Directed Acyclic Graph)**, which guarantees no infinite recursion cycles.
