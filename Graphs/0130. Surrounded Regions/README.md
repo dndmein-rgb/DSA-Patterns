@@ -2,6 +2,7 @@
 
 ## 📋 Problem Description
 **Difficulty**: Medium  
+**LeetCode**: [Surrounded Regions](https://leetcode.com/problems/surrounded-regions/)  
 **Pattern**: BFS / Boundary Flood Fill  
 
 You are given an `m x n` board containing `'X'` and `'O'`.
