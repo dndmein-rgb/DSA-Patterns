@@ -2,6 +2,7 @@
 
 ## 📋 Problem Description
 **Difficulty**: Medium  
+**LeetCode**: [Pacific Atlantic Water Flow](https://leetcode.com/problems/pacific-atlantic-water-flow/)  
 **Pattern**: Multi-Source BFS / Reverse Flow  
 
 You are given an `m x n` matrix of heights representing a continent.
