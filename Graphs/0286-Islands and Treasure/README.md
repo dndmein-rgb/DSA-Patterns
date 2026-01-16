@@ -2,8 +2,7 @@
 
 ## 📋 Problem Description
 **Difficulty**: Medium  
-# [0286. Islands and Treasure (Walls and Gates)](https://neetcode.io/problems/islands-and-treasure/question?list=neetcode150)
-
+**LeetCode**: [0286. Islands and Treasure (Walls and Gates)](https://neetcode.io/problems/islands-and-treasure/question?list=neetcode150)  
 **Pattern**: Multi-Source BFS / Grid Shortest Distance  
 
 You are given an `m x n` grid with three possible values:
