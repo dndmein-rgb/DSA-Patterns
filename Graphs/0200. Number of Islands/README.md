@@ -2,8 +2,8 @@
 
 ## 📋 Problem Description
 **Difficulty**: Medium  
-**LeetCode**: https://leetcode.com/problems/number-of-islands/  
-**Pattern**: Graph DFS / Matrix Connectivity
+**LeetCode**: [Number of Islands](https://leetcode.com/problems/number-of-islands/)  
+**Pattern**: Graph DFS / Matrix Connectivity  
 
 Given an `m x n` binary grid, return the number of islands.
 
