@@ -28,7 +28,7 @@ Start BFS from *many* sources at once. Distance spreads like a wave.
 
 This is where BFS stops being “just a queue”.
 
-* [0286. Islands and Treasure](./0286.%20Islands%20and%20Treasure)  
+* [0286. Islands and Treasure](./0286-Islands%20and%20Treasure)  
   Classic multi-source BFS. Nearest distance problem.
 * [0127. Word Ladder](./0127.%20Word%20Ladder)  
   BFS on an implicit graph. Each word is a node.
