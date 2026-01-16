@@ -1,8 +1,8 @@
 # 0127. Word Ladder
 
 ## 📋 Problem Description
-**Difficulty**: Medium |
-**LeetCode Link**: [Word Ladder](https://leetcode.com/problems/word-ladder/)  
+**Difficulty**: Medium
+**LeetCode**: [Word Ladder](https://leetcode.com/problems/word-ladder/)  
 
 Given two words `beginWord` and `endWord`, and a dictionary `wordList`, return the length of the shortest transformation sequence from `beginWord` to `endWord`.
 
