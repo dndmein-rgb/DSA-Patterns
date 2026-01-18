@@ -1,85 +1,200 @@
 # 778. Swim in Rising Water
 
+## 📋 Problem Description
 **Difficulty:** Hard  
-**LeetCode:** [Swim in Rising Water](https://leetcode.com/problems/swim-in-rising-water/)  
-**Pattern:** Graph + Dijkstra / Minimax Path
-
----
-
-## 📌 Problem Statement
+**LeetCode Link:** [Swim in Rising Water](https://leetcode.com/problems/swim-in-rising-water/)  
+**Pattern:** Minimax Path  
+- Graph + Dijkstra  
+- Binary Search + DFS
 
 You are given an `n x n` grid where `grid[i][j]` represents the elevation at cell `(i, j)`.
 
-- At time `t`, you can enter a cell if `grid[i][j] ≤ t`
-- You start at `(0,0)` and want to reach `(n-1,n-1)`
+- At time `t`, you may enter any cell with elevation `≤ t`
+- You start at `(0, 0)` and must reach `(n-1, n-1)`
+- Movement is allowed in 4 directions
 - Return the **minimum time** required to reach the destination
+
+---
+
+## 🧪 Examples
+
+### Example 1
+**Input**
+```
+grid = [[0,2],[1,3]]
+```
+
+**Output**
+```
+3
+```
+
+**Explanation**  
+The path must pass through elevation `3`, so the minimum required time is `3`.
+
+---
+
+### Example 2
+**Input**
+```
+grid =
+[[0,1,2,3,4],
+ [24,23,22,21,5],
+ [12,13,14,15,16],
+ [11,17,18,19,20],
+ [10,9,8,7,6]]
+```
+
+**Output**
+```
+16
+```
+
+---
+
+## 📏 Constraints
+- `n == grid.length`
+- `1 ≤ n ≤ 50`
+- `0 ≤ grid[i][j] < n²`
+- All values are unique
 
 ---
 
 ## 🧠 Core Insight
 
-This is **not shortest path by sum**.  
-This is **shortest path by maximum edge cost**.
+This is **not** a shortest-path-by-sum problem.
 
-The cost of a path =  
+The cost of a path is defined as:
 ```
 max(elevation along the path)
 ```
 
-So the goal is to **minimize the maximum elevation encountered**.
+Goal:
+```
+Minimize the maximum elevation encountered
+```
 
-That’s classic **Dijkstra with a modified relaxation rule**.
+This allows **two valid approaches**:
+
+1. Dijkstra (minimax path)
+2. Binary Search on time + DFS feasibility check
 
 ---
 
-## 🛠️ Algorithm (Dijkstra – Minimax)
+## 🛠️ Approach 1: Dijkstra (Minimax Path)
 
-1. Each cell is a node
-2. Moving to a neighbor has cost = `grid[neighbor]`
-3. Path cost = `max(current_time, neighbor_height)`
-4. Use a min-heap ordered by current path cost
-5. Mark cells visited when popped from heap
-6. First time you reach `(n-1,n-1)` → optimal answer
+### Idea
+- Treat each cell as a node
+- Moving to a neighbor has cost = `grid[neighbor]`
+- Path cost = `max(current_cost, neighbor_height)`
+- Always expand the path with the **lowest maximum elevation so far**
 
----
+This is classic **Dijkstra with a modified relaxation rule**.
 
-## 🧪 Dry Run
+### Steps
+1. Push `(grid[0][0], 0, 0)` into a min-heap
+2. Pop the cell with the smallest current max elevation
+3. For each neighbor:
+   ```
+   nextCost = max(currentCost, grid[neighbor])
+   ```
+4. First time `(n-1, n-1)` is popped → answer
 
-```
-grid =
-[
- [0, 2],
- [1, 3]
-]
-```
-
-Steps:
-- Start at (0,0), time = 0
-- Move to (1,0): max(0,1) = 1
-- Move to (0,1): max(0,2) = 2
-- Best path reaches (1,1) with time = 3
-
-Answer:
-```
-3
-```
-
----
-
-## ⏱️ Complexity
-
-- **Time:** `O(n² log n²)` ≈ `O(n² log n)`
+### Complexity
+- **Time:** `O(n² log n)`
 - **Space:** `O(n²)`
 
-Efficient enough for constraints.
+---
+
+## 🛠️ Approach 2: Binary Search + DFS (Your Solution)
+
+### Idea
+The answer lies between:
+```
+grid[0][0] and n² - 1
+```
+
+Binary search on time `t`.
+
+For each `t`, check:
+> Is there a path from `(0,0)` to `(n-1,n-1)` using only cells with `grid[i][j] ≤ t`?
+
+This becomes a **DFS reachability problem**.
 
 ---
 
-## ✅ Key Takeaways
+### DFS Feasibility Check
+For a given `t`:
+- Block all cells with elevation `> t`
+- Run DFS from `(0,0)`
+- If destination is reachable → `t` is feasible
 
-- This is **Dijkstra**, not BFS
-- Path cost is defined by `max`, not sum
-- First arrival at destination is optimal
-- Same logic applies to minimax / bottleneck path problems
+---
 
-If you see “minimize the maximum value on a path,” this pattern should fire instantly.
+### Binary Search Steps
+1. `low = grid[0][0]`, `high = n² - 1`
+2. While `low ≤ high`:
+   - `mid = (low + high) / 2`
+   - If DFS can reach destination:
+     - store answer
+     - search left
+   - Else:
+     - search right
+3. Return the smallest feasible `t`
+
+---
+
+### Why This Works
+- Reachability is **monotonic**
+- If you can reach at time `t`, you can reach at all `t' > t`
+- That makes binary search valid
+
+---
+
+### Complexity
+- **Time:** `O(n² log n²)` ≈ `O(n² log n)`
+- **Space:** `O(n²)` (DFS visited array)
+
+---
+
+## ⚖️ Comparison
+
+| Method | Pros | Cons |
+|------|-----|-----|
+| Dijkstra | One pass, elegant | Harder to intuit |
+| Binary + DFS | Very intuitive | Extra log factor |
+
+Both are **fully correct**.
+
+---
+
+## ❌ Common Mistakes
+- Treating this as BFS
+- Minimizing sum instead of max
+- Marking visited too early in Dijkstra
+- Forgetting monotonicity in binary search
+- Using DFS without resetting `visited`
+
+---
+
+## 📁 Folder Structure
+```
+0778-swim-in-rising-water/
+├── 0778-swim-in-rising-water.cpp
+└── README.md
+```
+
+---
+
+## 🎯 Final Takeaway
+
+This problem is about **minimizing the worst step**, not the total cost.
+
+If you see:
+> “minimum time such that a path exists”
+
+Think:
+- **Binary Search + Reachability**
+- or **Dijkstra with max-based relaxation**
+
+Same truth. Different tools.
