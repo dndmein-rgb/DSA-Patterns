@@ -1,78 +1,66 @@
-# 🕸️ Graph Traversal Hierarchy: From Flood Fill to Cycle Detection
+# 🧠 Graph Algorithms Hierarchy: From BFS Constraints to Global Optimization
 
-This roadmap represents the mental progression required to master **graph problems**—from simple connectivity to directed cycles and state propagation.  
-If DP is about *state*, graphs are about *reachability*.
+This roadmap represents the mental progression required to solve **graph problems deliberately** instead of pattern-guessing.
 
----
-
-## 🧱 Level 1: Grid DFS/BFS – Flood Fill (The Foundation)
-**The Focus:**  
-Learn to traverse a grid. No tricks. Just directions, bounds, and visited tracking.
-
-If you can’t do these, graphs will feel impossible.
-
-* [0200. Number of Islands](./0200.%20Number%20of%20Islands)  
-  Count connected components in a grid. This is ground zero.
-* [0695. Max Area of Island](./0695.%20Max%20Area%20of%20Island)  
-  Same traversal, but now you accumulate state.
-* [0130. Surrounded Regions](./0130.%20Surrounded%20Regions)  
-  Boundary-based flood fill. Learn what **not** to flip.
-* [0994. Rotting Oranges](./0994.%20Rotting%20Oranges)  
-  First exposure to **multi-source BFS** and time simulation.
+Graphs are not about “using BFS or DFS”.  
+They are about **what property the problem is asking you to preserve**: distance, order, feasibility, or global cost.
 
 ---
 
-## 🌊 Level 2: Multi-Source BFS – Distance Propagation
+## 🧱 Level 1: BFS with Constraints (Traversal is not enough)
+
 **The Focus:**  
-Start BFS from *many* sources at once. Distance spreads like a wave.
+BFS works only when the problem allows it.  
+Here, constraints twist BFS just enough to punish shallow understanding.
 
-This is where BFS stops being “just a queue”.
-
-* [0286. Islands and Treasure](./0286-Islands%20and%20Treasure)  
-  Classic multi-source BFS. Nearest distance problem.
-* [0127. Word Ladder](./0127.%20Word%20Ladder)  
-  BFS on an implicit graph. Each word is a node.
-* [0417. Pacific Atlantic Water Flow](./0417.%20Pacific%20Atlantic%20Water%20Flow)  
-  Reverse thinking. Flow **from** oceans, not to them.
+* [0787. Cheapest Flights Within K Stops](./0787-Cheapest-Flights-Within-K-Stops)  
+  BFS with levels. The stop limit breaks classic shortest-path logic.
+  Learn why plain BFS and plain Dijkstra both fail without modification.
 
 ---
 
-## 🧩 Level 3: Graph Construction + Traversal
+## 🧭 Level 2: Shortest Path – Dijkstra Proper (Weighted Graph Reality)
+
 **The Focus:**  
-The graph isn’t given explicitly. You must build it correctly.
+Once edges have weights, BFS lies.  
+You must respect accumulated cost and prune stale states.
 
-Mistakes here cause invisible bugs.
+* [0743. Network Delay Time](./0743-Network-Delay-Time)  
+  Canonical Dijkstra. Single-source shortest path with no tricks.
+  If this feels hard, your fundamentals are weak.
 
-* [0133. Clone Graph](./0133.%20Clone%20Graph)  
-  Graph copying + visited mapping. Pointer discipline test.
-* [0323. Number of Connected Components in an Undirected Graph](./0323.%20Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph)  
-  Same idea as islands, minus the grid training wheels.
+* [0778. Swim in Rising Water](./0778-Swim-in-Rising-Water)  
+  Dijkstra with a **minimax cost function**.
+  Path cost is the maximum edge, not the sum.
+  Same algorithm, different mental model.
 
 ---
 
-## 🔗 Level 4: Tree Properties & Cycle Detection (Undirected)
-**The Focus:**  
-Understand what makes a graph a **tree**:  
-connected + acyclic.
+## 🧠 Level 3: Structural Graph Problems (Order > Distance)
 
-* [0261. Graph Valid Tree](./0261.%20Graph%20Valid%20Tree)  
-  DFS + parent tracking or Union-Find.
-* [0684. Redundant Connection](./0684.%20Redundant%20Connection)  
-  Detect the exact edge that creates a cycle. Union-Find shines here.
+**The Focus:**  
+Graphs are not always about cost.
+Sometimes the output is **structure**.
+
+* [0269. Alien Dictionary](./0269-Alien-Dictionary)  
+  Build dependencies from word order.
+  Topological sort with a brutal prefix edge case.
+
+* [0332. Reconstruct Itinerary](./0332-Reconstruct-Itinerary)  
+  Eulerian path with lexicographical constraints.
+  Post-order DFS (Hierholzer) or guaranteed failure.
 
 ---
 
-## 🎓 Level 5: Directed Graphs – Dependencies & Order
+## 🌉 Level 4: Global Optimization (Minimum Spanning Tree)
+
 **The Focus:**  
-Direction matters. Cycles are fatal. Order is the output.
+This is not shortest path.
+This is **global connectivity at minimum cost**.
 
-This is where graphs become interview-critical.
-
-* [0207. Course Schedule](./0207.%20Course%20Schedule)  
-  Can you finish all courses? Cycle detection in DAGs.
-* [0210. Course Schedule II](./0210.%20Course%20Schedule%20II)  
-  Same graph, but now you must return the order.
-  Topological sort is non-negotiable here.
+* [1584. Min Cost to Connect All Points](./1584-Min-Cost-to-Connect-All-Points)  
+  Minimum Spanning Tree using Prim’s Algorithm.
+  Greedy works only because the cut property holds.
 
 ---
 
@@ -80,28 +68,32 @@ This is where graphs become interview-critical.
 
 | Concept | What You’re Learning |
 |------|---------------------|
-| Flood Fill | Reachability |
-| Multi-Source BFS | Distance & time |
-| Graph Construction | Correct adjacency modeling |
-| Undirected Cycles | Tree vs non-tree |
-| Directed Cycles | Dependency resolution |
-| Topological Sort | Ordering constraints |
+| BFS with Levels | Constraints break naïve traversal |
+| Dijkstra | Weighted shortest paths |
+| Minimax Path | Cost ≠ sum of edges |
+| Topological Sort | Ordering from dependencies |
+| Eulerian Path | Edge-usage guarantees |
+| Minimum Spanning Tree | Global cost minimization |
 
 ---
 
 ## ⚠️ Common Failure Points
-- Forgetting to mark visited early (causes infinite loops)
-- Mixing up BFS vs DFS use cases
-- Not resetting visited for per-edge checks
-- Treating directed graphs like undirected ones
-- Avoiding Union-Find when it’s clearly the right tool
+
+- Using BFS on weighted graphs
+- Forgetting stale-state checks in Dijkstra
+- Missing prefix-invalid cases (Alien Dictionary)
+- Treating Eulerian Path like backtracking
+- Confusing MST with shortest path problems
 
 ---
 
 ## 🎯 Final Advice
-If DP teaches you **how states evolve**,  
-Graphs teach you **what can reach what**.
 
-Master this roadmap and graph problems stop being scary—they become repetitive.
+If BFS teaches you **how traversal works**,  
+and Dijkstra teaches you **how cost accumulates**,  
+then structural problems teach you **what must exist**, not how to reach it.
 
-That’s the goal.
+Once you recognize **what property the graph must satisfy**,  
+the algorithm choice becomes obvious.
+
+That’s when graphs stop being hard.
