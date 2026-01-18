@@ -2,7 +2,8 @@
 
 ## 📋 Problem Description
 **Difficulty**: Medium  
-**Pattern**: Multi-Source BFS / Grid Level Traversal  
+**LeetCode Link**: [Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)  
+**Pattern**: Multi-Source BFS / Grid Level Traversal
 
 You are given an `m x n` grid where:
 - `0` → Empty cell
