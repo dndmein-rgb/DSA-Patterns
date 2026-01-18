@@ -2,7 +2,7 @@
 
 ## 📋 Problem Description
 **Difficulty**: Medium  
-**LeetCode Link**: https://leetcode.com/problems/clone-graph/  
+**LeetCode Link**: [Clone Graph](https://leetcode.com/problems/clone-graph/)  
 **Pattern**: Graph DFS / Hash Map  
 
 You are given a reference to a node in a **connected undirected graph**.  
