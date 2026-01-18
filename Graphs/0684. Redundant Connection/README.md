@@ -2,6 +2,7 @@
 
 ## 📋 Problem Description
 **Difficulty**: Medium  
+**Leetcode Link**:[Redundant Connection](https://leetcode.com/problems/redundant-connection/solutions/)  
 **Pattern**: Graph + Cycle Detection  
 
 You are given a graph that started as a tree with `n` nodes.
