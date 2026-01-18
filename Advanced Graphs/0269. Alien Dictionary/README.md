@@ -1,7 +1,7 @@
 # 269. Alien Dictionary
 
 **Difficulty:** Hard  
-**LeetCode:** [Alien Dictionary](https://leetcode.com/problems/alien-dictionary/)  
+**LeetCode:** [Alien Dictionary](https://neetcode.io/problems/foreign-dictionary/question?list=neetcode150/)  
 **Pattern:** Graph + Topological Sort (Kahn’s Algorithm)
 
 ---
