@@ -1,8 +1,11 @@
 # 0261. Graph Valid Tree
 
 ## 📋 Problem Description
+
 **Difficulty**: Medium  
-**Pattern**: Graph + DFS  
+**LeetCode Link**: [Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/)  
+**Pattern**: Graph + DFS
+
 
 You are given `n` nodes labeled from `0` to `n - 1` and a list of undirected edges.
 
