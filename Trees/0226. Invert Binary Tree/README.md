@@ -62,7 +62,9 @@ Input: [4, 2, 7, 1, 3, 6, 9]
 3. Pop 2: Swap (1, 3) -> Children are now [3, 1]. Queue: [9, 6, 3, 1]
 4. Pop 9, 6, 3, 1: No children to swap.
 
-Result: [4, 7, 2, 9, 6, 3, 1]
+Result: [4, 7, 2, 9, 6, 3, 1]   
+
+
 ⏱️ Complexity
 Time: O(N) — Every node is visited and swapped exactly once.
 
