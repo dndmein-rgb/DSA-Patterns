@@ -46,4 +46,19 @@ public:
     }
 
     // Encodes a tree to a single string.
-    string serialize(
+    string serialize(TreeNode* root) {
+        string s;
+        dfsSerialize(root, s);
+        return s;
+    }
+
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string data) {
+        int idx = 0;
+        return dfsDeserialize(data, idx);
+    }
+};
+
+// Usage:
+// Codec ser, deser;
+// TreeNode* ans = deser.deserialize(ser.serialize(root));
