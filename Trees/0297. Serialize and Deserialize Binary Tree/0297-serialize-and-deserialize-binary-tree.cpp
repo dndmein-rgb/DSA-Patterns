@@ -1,0 +1,49 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+
+class Codec {
+public:
+    void dfsSerialize(TreeNode* node, string &s) {
+        if (!node) {
+            s += "#,";
+            return;
+        }
+        s += to_string(node->val) + ',';
+        dfsSerialize(node->left, s);
+        dfsSerialize(node->right, s);
+    }
+
+    TreeNode* dfsDeserialize(string &s, int &idx) {
+        if (s[idx] == '#') {
+            idx += 2;
+            return nullptr;
+        }
+
+        int sign = 1;
+        if (s[idx] == '-') {
+            sign = -1;
+            idx++;
+        }
+
+        int num = 0;
+        while (s[idx] != ',') {
+            num = num * 10 + (s[idx] - '0');
+            idx++;
+        }
+        idx++;
+
+        TreeNode* node = new TreeNode(num * sign);
+        node->left = dfsDeserialize(s, idx);
+        node->right = dfsDeserialize(s, idx);
+        return node;
+    }
+
+    // Encodes a tree to a single string.
+    string serialize(
