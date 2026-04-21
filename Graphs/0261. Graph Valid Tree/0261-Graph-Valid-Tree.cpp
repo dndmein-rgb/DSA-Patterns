@@ -47,3 +47,42 @@ public:
         return true;
     }
 };
+
+
+class Solution {
+public:
+    bool validTree(int n, vector<vector<int>>& edges) {
+        // Condition 1: edge count
+        if (edges.size() != n - 1) return false;
+
+        // Build graph
+        vector<vector<int>> adj(n);
+        for (auto &e : edges) {
+            adj[e[0]].push_back(e[1]);
+            adj[e[1]].push_back(e[0]);
+        }
+
+        // BFS to check connectivity
+        vector<bool> vis(n, false);
+        queue<int> q;
+        q.push(0);
+        vis[0] = true;
+
+        int count = 0;
+
+        while (!q.empty()) {
+            int node = q.front(); q.pop();
+            count++;
+
+            for (int nei : adj[node]) {
+                if (!vis[nei]) {
+                    vis[nei] = true;
+                    q.push(nei);
+                }
+            }
+        }
+
+        // Condition 2: all nodes visited
+        return count == n;
+    }
+};
