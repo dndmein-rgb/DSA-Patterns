@@ -1,99 +1,117 @@
-# 🧠 Graph Algorithms Hierarchy: From BFS Constraints to Global Optimization
+# 📊 Graph Problems – Level-wise Breakdown
 
-This roadmap represents the mental progression required to solve **graph problems deliberately** instead of pattern-guessing.
-
-Graphs are not about “using BFS or DFS”.  
-They are about **what property the problem is asking you to preserve**: distance, order, feasibility, or global cost.
+A curated collection of graph problems organized by difficulty and core concepts.
 
 ---
 
-## 🧱 Level 1: BFS with Constraints (Traversal is not enough)
+## 🟢 Easy Level
 
-**The Focus:**  
-BFS works only when the problem allows it.  
-Here, constraints twist BFS just enough to punish shallow understanding.
+### 🔹 Basic BFS / DFS (Traversal)
+- **0200. Number of Islands**
+- **0695. Max Area of Island**
+- **0994. Rotting Oranges**
 
-* [0787. Cheapest Flights Within K Stops](./0787-Cheapest-Flights-Within-K-Stops)  
-  BFS with levels. The stop limit breaks classic shortest-path logic.
-  Learn why plain BFS and plain Dijkstra both fail without modification.
-
----
-
-## 🧭 Level 2: Shortest Path – Dijkstra Proper (Weighted Graph Reality)
-
-**The Focus:**  
-Once edges have weights, BFS lies.  
-You must respect accumulated cost and prune stale states.
-
-* [0743. Network Delay Time](./0743-Network-Delay-Time)  
-  Canonical Dijkstra. Single-source shortest path with no tricks.
-  If this feels hard, your fundamentals are weak.
-
-* [0778. Swim in Rising Water](./0778-Swim-in-Rising-Water)  
-  Dijkstra with a **minimax cost function**.
-  Path cost is the maximum edge, not the sum.
-  Same algorithm, different mental model.
+📌 Focus:
+- Grid traversal
+- BFS vs DFS intuition
+- Visited tracking
 
 ---
 
-## 🧠 Level 3: Structural Graph Problems (Order > Distance)
+## 🟡 Medium Level
 
-**The Focus:**  
-Graphs are not always about cost.
-Sometimes the output is **structure**.
+### 🔹 Graph Traversal + Components
+- **0323. Number of Connected Components in an Undirected Graph**
+- **0261. Graph Valid Tree**
+- **0684. Redundant Connection**
 
-* [0269. Alien Dictionary](./0269-Alien-Dictionary)  
-  Build dependencies from word order.
-  Topological sort with a brutal prefix edge case.
-
-* [0332. Reconstruct Itinerary](./0332-Reconstruct-Itinerary)  
-  Eulerian path with lexicographical constraints.
-  Post-order DFS (Hierholzer) or guaranteed failure.
+📌 Focus:
+- Connected components
+- Cycle detection
+- Union-Find basics
 
 ---
 
-## 🌉 Level 4: Global Optimization (Minimum Spanning Tree)
+### 🔹 Topological Sort (DAG)
+- **0207. Course Schedule**
+- **0210. Course Schedule II**
 
-**The Focus:**  
-This is not shortest path.
-This is **global connectivity at minimum cost**.
-
-* [1584. Min Cost to Connect All Points](./1584-Min-Cost-to-Connect-All-Points)  
-  Minimum Spanning Tree using Prim’s Algorithm.
-  Greedy works only because the cut property holds.
-
----
-
-## 🧠 Mental Model Summary
-
-| Concept | What You’re Learning |
-|------|---------------------|
-| BFS with Levels | Constraints break naïve traversal |
-| Dijkstra | Weighted shortest paths |
-| Minimax Path | Cost ≠ sum of edges |
-| Topological Sort | Ordering from dependencies |
-| Eulerian Path | Edge-usage guarantees |
-| Minimum Spanning Tree | Global cost minimization |
+📌 Focus:
+- Kahn’s Algorithm (BFS)
+- DFS cycle detection
+- Ordering dependencies
 
 ---
 
-## ⚠️ Common Failure Points
+### 🔹 Grid + Multi-source BFS
+- **0286. Islands and Treasure**
+- **0417. Pacific Atlantic Water Flow**
 
-- Using BFS on weighted graphs
-- Forgetting stale-state checks in Dijkstra
-- Missing prefix-invalid cases (Alien Dictionary)
-- Treating Eulerian Path like backtracking
-- Confusing MST with shortest path problems
+📌 Focus:
+- Multi-source BFS
+- Reverse thinking (flow from oceans)
+- Distance propagation
 
 ---
 
-## 🎯 Final Advice
+### 🔹 Graph Cloning / Structure Copy
+- **0133. Clone Graph**
 
-If BFS teaches you **how traversal works**,  
-and Dijkstra teaches you **how cost accumulates**,  
-then structural problems teach you **what must exist**, not how to reach it.
+📌 Focus:
+- Deep copy
+- HashMap + DFS/BFS
 
-Once you recognize **what property the graph must satisfy**,  
-the algorithm choice becomes obvious.
+---
 
-That’s when graphs stop being hard.
+## 🔴 Hard Level
+
+### 🔹 Advanced BFS / Graph Transformation
+- **0127. Word Ladder**
+
+📌 Focus:
+- BFS on implicit graph
+- Optimization using sets
+- Shortest path in unweighted graph
+
+---
+
+### 🔹 Flood Fill Variants / Boundary Traversal
+- **0130. Surrounded Regions**
+
+📌 Focus:
+- Boundary DFS/BFS
+- Region capture logic
+
+---
+
+## 🧠 Pattern Summary
+
+| Pattern                  | Problems |
+|-------------------------|----------|
+| BFS / DFS (Grid)        | 0200, 0695, 0994 |
+| Connected Components    | 0323, 0261 |
+| Cycle Detection         | 0684 |
+| Topological Sort        | 0207, 0210 |
+| Multi-source BFS        | 0286, 0417 |
+| Graph Copy              | 0133 |
+| Shortest Path (BFS)     | 0127 |
+| Boundary Traversal      | 0130 |
+
+---
+
+## ⚠️ What You Should Actually Notice
+
+- Most “graph problems” reduce to **BFS/DFS with slight twists**
+- If you don’t recognize patterns, you’ll keep relearning the same thing
+- Hard problems aren’t new concepts, just **clever modeling**
+
+---
+
+## 🚀 Strategy
+
+1. Master BFS & DFS (no excuses)
+2. Learn Union-Find basics
+3. Understand Topological Sort deeply
+4. Practice recognizing patterns, not memorizing solutions
+
+---
